@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import HttpRequest from '../Utils/HttpRequest';
 
 export default class Home extends Component {
   static displayName = Home.name;
+
+  componentDidMount() {}
 
   render() {
     return (
