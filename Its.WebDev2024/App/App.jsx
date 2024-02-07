@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import AppRoutes from './AppRoutes';
+import {
+  Switch,
+  Route,
+} from 'react-router-dom';
 import { Layout } from './Components/Layout';
 import './style.scss';
+import Home from './Components/Home';
+import ProductList from './Components/Product/ProductList';
+import ProductDetails from './Components/Product/ProductDetails';
+import NotFound from './Components/NotFound';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -10,12 +16,20 @@ export default class App extends Component {
   render() {
     return (
       <Layout>
-        <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={index} {...rest} element={element} />;
-          })}
-        </Routes>
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/products">
+            <ProductList />
+          </Route>
+          <Route path="/product/:id">
+            <ProductDetails />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
       </Layout>
     );
   }
